@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bewaesserung</title>
+    
+</head>
+<body>
+    <div class="mainPage">
+      
+        <div class="title">Wateringsystem</div>
+        <div class="columnInfo">
+            <div class="waterLvl">
+                <div class="waterLvl__progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">|  water left</div>
+            </div>
+            <div class="plantHumidity">
+                <div class="plantHumidity__progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">|  humidity</div>
+            </div>
+        </div>
+        <div class="controllDiv">
+          <button class="controllBtn one">Update</button>
+          <button class="controllBtn two">Irrigate</button>
+          
+        </div>
+    </div>
+    <style>
+    
+    body{
+        margin:0;
+        padding:0;
+        font-family: 'Trebuchet MS', sans-serif;
+        background-image: url('/data/backgroundImage.jpg');
+        object-fit:fill;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: top;
+        height: 100vh;
+    }
+    .controllDiv{
+      display:flex;
+      justify-content: center;
+      
+    }
+    .controllBtn{
+      margin:0 20px 0 20px;
+      width: 10rem;
+      background-color: rgb(105, 128, 255);
+      color: white;
+      font-size: 2rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding:5px 15px;
+      border-radius: 5px;
+      border: none;
+      transition: 0.2s ease-in;
+    }
+
+    .one:hover{
+      margin:5px 20px;
+    }
+    .two:hover{
+      margin: 5px 20px;
+    }
+    .three:hover{
+      margin: 5px 20px;
+    }
+    .title{
+        height: 10vh;
+        background-color: rgb(255, 255, 255);
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(0, 0, 0);
+        font-size: 3rem;
+    }
+    
+    .columnInfo{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+        margin:10% 20%;
+    
+    }
+    
+    .waterLvl{
+       
+        flex: 1;
+        height: 20vh;
+        display:flex;
+        justify-content: center;
+    }
+    
+    .plantHumidity{
+      
+        flex: 1;
+        height: 20vh;
+        display:flex;
+        justify-content: center;;
+    }
+    
+    @property --progress-value-humidity {
+        syntax: "<integer>";
+        initial-value: 0;
+        inherits: false;
+      }
+      @property --progress-value-waterLvl {
+        syntax: "<integer>";
+        initial-value: 0;
+        inherits: false;
+      }
+      
+      @keyframes progress {
+       to { --progress-value-humidity: 60;
+        --progress-value-waterLvl: 50; 
+        }
+      }
+      
+      .waterLvl__progress-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: 
+          radial-gradient(closest-side, white 79%, transparent 80% 100%),
+          conic-gradient(rgb(105, 128, 255) calc(var(--progress-value-waterLvl) * 1%), pink 0);
+        animation: progress 2s 1 forwards;
+      }
+      
+      .waterLvl__progress-bar::before {
+        counter-reset: percentage var(--progress-value-waterLvl);
+        content: counter(percentage) '%';
+        animation: progress 2s 1 forwards;
+      }
+    
+      .plantHumidity__progress-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: 
+          radial-gradient(closest-side, white 79%, transparent 80% 100%),
+          conic-gradient(rgb(105, 128, 255) calc(var(--progress-value-humidity) * 1%), pink 0);
+        animation: progress 2s 1 forwards;
+      }
+      
+      .plantHumidity__progress-bar::before {
+        counter-reset: percentage var(--progress-value-humidity);
+        content: counter(percentage) '%';
+        animation: progress 2s 1 forwards;
+      }
+    
+     @media (max-width: 760px){
+        .columnInfo{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 20vh;
+            margin:20% 20%;
+        }
+    
+        .waterLvl{
+           
+            flex: 1;
+            height: 20vh;
+            display:flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .plantHumidity{
+        
+            flex: 1;
+            height: 20vh;
+            display:flex;
+            justify-content: center;;
+        }
+    
+    
+        @property --progress-value {
+            syntax: "<integer>";
+            initial-value: 0;
+            inherits: false;
+          }
+          
+          @keyframes progress {
+           to { --progress-value-second: 50; }
+          }
+          
+          .waterLvl__progress-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: 
+              radial-gradient(closest-side, white 79%, transparent 80% 100%),
+              conic-gradient(rgb(105, 128, 255) calc(var(--progress-value-second) * 1%), rgb(201, 192, 255) 0);
+            animation: progress 2s 1 forwards;
+          }
+          
+          .waterLvl__progress-bar::before {
+            counter-reset: percentage var(--progress-value-second);
+            content: counter(percentage) '%';
+            animation: progress 2s 1 forwards;
+          }
+        
+          .plantHumidity__progress-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: 
+              radial-gradient(closest-side, white 79%, transparent 80% 100%),
+              conic-gradient(rgb(105, 128, 255) calc(var(--progress-value-second) * 1%), pink 0);
+            animation: progress 2s 1 forwards;
+          }
+          
+        }
+        </style>
+        <script>
+          document.
+          webSocket.onmessage = function (event) {
+          let receivedData = event.data;
+          console.log("WebSockets-Nachricht empfangen: " + receivedData);
+
+          // Hier kannst du die CSS-Variablen aktualisieren, ohne das Parsen zu verwenden
+          // ...
+
+          // Beispiel, wie du auf die Werte zugreifen kannst, ohne JSON.parse
+          let jsonData = receivedData;
+          let humidityValue = jsonData.humidity;
+          let waterLevelValue = jsonData.waterLevel;
+
+          document.querySelector('.waterLvl__progress-bar').style.width = '60%';   //waterLevelValue.waterLevel + '%';
+          document.querySelector('.plantHumidity__progress-bar').style.width = humidityValue.humidity + '%';
+    };
+
+
+    </script>
+</body>
+</html>
