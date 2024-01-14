@@ -3,8 +3,8 @@
 #include <SPIFFS.h>
 #include <AsyncJson.h>
 
-const char *ssid = "devolo-649";
-const char *password = "DIJGEMTADTYHJETY";
+const char *ssid = "";
+const char *password = "";
 
 AsyncWebServer server(80);
 
